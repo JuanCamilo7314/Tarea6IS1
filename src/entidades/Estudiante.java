@@ -7,7 +7,7 @@ package entidades;
 
 /**
  *
- * @author Juan Camilo Uni Lara
+ * @author Juan Camilo Uni Lara, Yenny Maria Burbano
  */
 public class Estudiante {
     
