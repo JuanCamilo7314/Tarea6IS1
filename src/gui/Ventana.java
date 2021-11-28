@@ -1,24 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import persistencia.ManejoArchivo;
+import control.Control;
+import java.io.File;
 /**
- *
- * @author Juan Camilo Uni Lara
+ * Ventana principal
+ * @author Juan Camilo Uni Lara, Yenny Maria Burbano Castillo
  */
 public class Ventana extends javax.swing.JFrame {
-
-    ManejoArchivo manejoArchivo;
+    
+    Control control;
     
     public Ventana() {
-        manejoArchivo = new ManejoArchivo();
+        control = new Control();
         initComponents();
     }
 
@@ -136,8 +130,8 @@ public class Ventana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        List<String> listaEstudiantes = new ArrayList<String>();
-        listaEstudiantes = manejoArchivo.recorrerArchivo(manejoArchivo.leerRuta());
+        File archivo = control.seleccionarRuta();
+        rutaCsv.setText(archivo.getName());
     }//GEN-LAST:event_btnCargarActionPerformed
 
     /**
