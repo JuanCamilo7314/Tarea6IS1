@@ -9,6 +9,9 @@ package entidades;
 public class ListaException extends Exception
 {
 
-
+    public ListaException(String mensaje)
+    {
+        super(mensaje);
+    }
 
 }
