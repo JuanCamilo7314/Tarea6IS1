@@ -9,6 +9,16 @@ package persistencia;
  *
  * @author Juan Camilo Uni Lara
  */
-public class ArchivoException {
-    
+public class ArchivoException extends Exception
+{
+
+    public ArchivoException(String mensaje)
+    {
+        super(mensaje);
+    }
+    ArchivoException()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
 }

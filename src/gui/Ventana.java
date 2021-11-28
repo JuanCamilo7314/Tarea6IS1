@@ -1,16 +1,17 @@
 package gui;
 
-
 import control.Control;
 import java.io.File;
+
 /**
  * Ventana principal
+ *
  * @author Juan Camilo Uni Lara, Yenny Maria Burbano Castillo
  */
 public class Ventana extends javax.swing.JFrame {
-    
+
     Control control;
-    
+
     public Ventana() {
         control = new Control();
         initComponents();
@@ -131,7 +132,10 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         File archivo = control.seleccionarRuta();
-        rutaCsv.setText(archivo.getName());
+        if (archivo != null) {
+            rutaCsv.setText(" " + archivo.getName());
+        }
+
     }//GEN-LAST:event_btnCargarActionPerformed
 
     /**

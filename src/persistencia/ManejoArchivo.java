@@ -5,47 +5,48 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * Clase encargada de manejar los archivos csv
- * @author Juan Camilo Uni Lara, Yenny Maria Burbano Castillo
+ * @author Juan Camilo Uni Lara y Yenny Maria Burbano Castillo
  */
 public class ManejoArchivo {
-    
+
     /**
-     * Metodo encargado de obtener el File de una ruta seleccionada.
+     * Metodo encargado de obtener el File de una ruta seleccionada
      * @return archivo, Tipo File de la ruta seleccionada
+     * @throws persistencia.ArchivoException , cuando se cancela la seleccion
      */
-    public File leerRuta(){
+    public File leerRuta() throws ArchivoException {
         JFileChooser ventanacargar = new JFileChooser();
+        ventanacargar.setFileFilter(new FileNameExtensionFilter("*.csv","csv"));
+        ventanacargar.setAcceptAllFileFilterUsed(false);
         ventanacargar.showOpenDialog(ventanacargar);
         File archivo = ventanacargar.getSelectedFile();
-        return archivo;   
+        if (archivo == null) {
+            throw new ArchivoException("No se selecciono ningun archivo");
+        }
+        return archivo;
     }
-    
+
     /**
-     * Metodo encargado de recorrer el csv seleccionado y regresarlo en
-     * formato List<String>
+     * Metodo encargado de recorrer el csv seleccionado y regresarlo en formato
+     * List de Strings
      * @param archivo , Tipo File del csv seleccionado
      * @return listaEstudiantes, con todos los estudiantes en un arraylist
+     * @throws java.io.FileNotFoundException , cuando se ingresa una ruta no existente
      */
-    public List<String> recorrerArchivo(File archivo){
+    public List<String> recorrerArchivo(File archivo) throws FileNotFoundException,
+            NullPointerException {
         List<String> listaEstudiantes = new ArrayList<String>();
-        try {
-            Scanner in = new Scanner(archivo);
-            in.useDelimiter("\\n");
-            in.nextLine();   
-            while (in.hasNextLine())
-            {
-                listaEstudiantes.add(in.next());
-            }
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ManejoArchivo.class.getName()).log(Level.SEVERE, null, ex);
+        Scanner in = new Scanner(archivo);
+        in.useDelimiter("\\n");
+        in.nextLine();
+        while (in.hasNextLine()) {
+            listaEstudiantes.add(in.next());
         }
-        return listaEstudiantes; 
+        return listaEstudiantes;
     }
 }
