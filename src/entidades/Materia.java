@@ -1,14 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 /**
- *
- * @author Juan Camilo Uni Lara
+ * Clase para organizar la materia que puede tener un estudiante
+ * @author Juan Camilo Uni Lara y Yenny Maria Burbano
  */
-public class Materia {
-    
+public class Materia
+{
+
+    private String nombre;
+    private String codigo;
+
+    public Materia(String codigo, String nombre)
+    {
+        this.codigo = codigo;
+        this.nombre = nombre;
+    }
+
+    public String getCodigo()
+    {
+        return codigo;
+    }
+
 }

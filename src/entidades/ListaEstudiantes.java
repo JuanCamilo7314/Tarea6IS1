@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entidades;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- *
+ * Clase encargada de agregar los estudiantes a la lista de estudiantes, para
+ * realizar operaciones con esta
  * @author Juan Camilo Uni Lara
  */
-public class ListaEstudiantes {
-    
+public class ListaEstudiantes
+{
+
+  
 }

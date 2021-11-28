@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 /**
- *
- * @author Juan Camilo Uni Lara
+ * Clase para controlar las excepciones cuando la lista este vacia y se necesite
+ * hacer alguna operación con esta.
+ * @author Juan Camilo Uni Lara y Yenny Maria Burbano
  */
-public class ListaException {
-    
+public class ListaException extends Exception
+{
+
+
+
 }
