@@ -7,9 +7,8 @@ package entidades;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.Test;
+import static org.junit.Assert.*;
 /**
  *
  * @author Juan Camilo Uni Lara
@@ -33,10 +32,18 @@ public class ListaEstudiantesTest {
         estudiante.agregarMateria("0002", "Fisica II");
         estudiantesPrueba.add(estudiante);
         
-        System.out.println(estudiantesPrueba);
-        System.out.println(listaEstudiantes.consultarEstudiante());
-        
-        assertEquals(estudiantesPrueba, listaEstudiantes.consultarEstudiante());
+        assertEquals(estudiantesPrueba.get(0).getCedula(), 
+                listaEstudiantes.consultarEstudiante().get(0).getCedula());
+        assertEquals(estudiantesPrueba.get(0).getNombre(), 
+                listaEstudiantes.consultarEstudiante().get(0).getNombre());
     }
+    
+    @Test (expected = Exception.class)
+    public void testListaArchivoVacia()throws Exception{
+        ListaEstudiantes listaEstudiantes = new ListaEstudiantes();
+        List<String> lineasArchivos = new ArrayList<String>();
+        listaEstudiantes.adicionarEstudiante(lineasArchivos);
+    }
+    
     
 }
