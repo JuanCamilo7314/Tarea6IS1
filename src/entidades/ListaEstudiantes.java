@@ -47,12 +47,15 @@ public class ListaEstudiantes {
                             informacionEstudiante[j + 3]);
                     break;
                 } else {
-                    if (buscarEstudiante(informacionEstudiante[j]) == null) {
+                    Estudiante estudianteBuscado = buscarEstudiante(informacionEstudiante[j]);
+                    if (estudianteBuscado == null) {
                         estudiantes.add(estudiante);
-
-                    }
-                    estudiante.agregarMateria(informacionEstudiante[j + 2],
+                        estudiante.agregarMateria(informacionEstudiante[j + 2],
+                                informacionEstudiante[j + 3]);
+                    }else{
+                        estudianteBuscado.agregarMateria(informacionEstudiante[j + 2],
                             informacionEstudiante[j + 3]);
+                    }
                     break;
                 }
             }
@@ -83,6 +86,10 @@ public class ListaEstudiantes {
      */
     public List<Estudiante> consultarEstudiante() {
         return this.estudiantes;
+    }
+
+    public void vaciarLista() {
+        this.estudiantes = new ArrayList<Estudiante>();
     }
 
     /**

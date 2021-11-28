@@ -43,7 +43,9 @@ public class ManejoArchivo {
         List<String> listaEstudiantes = new ArrayList<String>();
         Scanner in = new Scanner(archivo);
         in.useDelimiter("\\n");
-        in.nextLine();
+        if (in.hasNextLine()){
+            in.nextLine();
+        }
         while (in.hasNextLine()) {
             listaEstudiantes.add(in.next());
         }

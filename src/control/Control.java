@@ -1,8 +1,13 @@
 package control;
 
+import entidades.Estudiante;
+import entidades.ListaEstudiantes;
+import entidades.ListaException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 import persistencia.ArchivoException;
@@ -17,11 +22,11 @@ import persistencia.ManejoArchivo;
 public class Control {
 
     ManejoArchivo manejoArchivo;
-    List<String> listaEstudiantes;
+    ListaEstudiantes listaEstudiantes;
 
     public Control() {
         manejoArchivo = new ManejoArchivo();
-        listaEstudiantes = new ArrayList<String>();
+        listaEstudiantes = new ListaEstudiantes();
     }
 
     /**
@@ -34,8 +39,8 @@ public class Control {
         try {
             archivo = manejoArchivo.leerRuta();
             try {
-                listaEstudiantes = manejoArchivo.recorrerArchivo(archivo);
-            } catch (FileNotFoundException ex) {
+                listaEstudiantes.llenarLista(archivo);
+            } catch (ListaException | FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         } catch (ArchivoException ex) {
@@ -43,5 +48,30 @@ public class Control {
         }
 
         return archivo;
+    }
+
+    public List<String> mostrarCantidadInscripciones() {
+         List<String> listaInscripciones = new ArrayList<String>();
+        try {
+            List<Estudiante> listaEstudiante = listaEstudiantes.consultarEstudiante();
+            listaInscripciones = contadorMaterias(listaEstudiante);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        Collections.sort(listaInscripciones);
+        return listaInscripciones;
+    }
+    
+    public void VaciarLista(){
+        listaEstudiantes.vaciarLista();
+    }
+
+    public List<String> contadorMaterias(List<Estudiante> estudiantes) {
+        List<String> listaInscripciones = new ArrayList<String>();
+        for (Estudiante estudiante : estudiantes) {
+            int cantidadMaterias = estudiante.cantidadMaterias();
+            listaInscripciones.add("  "+estudiante.getNombre() + " - " + cantidadMaterias + " materias.");
+        }
+        return listaInscripciones;
     }
 }
